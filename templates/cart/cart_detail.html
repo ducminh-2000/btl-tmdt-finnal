@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+Giỏ hàng
+{% endblock %}
+
+{% block content %}
+
+&nbsp
+
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+
+<table id="cart" class="table table-hover table-condensed">
+	<thead>
+		<tr>
+			<th style="width:50%">Sản phẩm</th>
+			<th style="width:10%" class="text-center">Giá</th>
+			<th style="width:8%" class="text-center">Số lượng</th>
+			<th style="width:22%" class="text-center">Thành tiền</th>
+			<th style="width:10%"></th>
+		</tr>
+	</thead>
+
+	<tbody>
+		{% for item in items %}
+{#		{% with product = item %}#}
+		<tr>
+			<td data-th="Product">
+				<div class="row">
+					<div class="col-sm-2 hidden-xs">
+						<a href="#">
+							<img src="{% if item.product.image %}{{ item.product.image.url }}{% else %}{% static 'img/no_image.png' %}{% endif %}" class="img-responsive">
+						</a>
+					</div>
+					<div class="col-sm-10">
+						<h4 class="nomargin">{{ item.product.name }}</h4>
+						<p>{{ item.product.descripion }}</p>
+					</div>
+				</div>
+			</td>
+			<td data-th="Price" class="text-center">{{ item.product.price }} đ</td>
+			<td data-th="Quantity" class="text-center">
+
+				<form action="{% url 'cart:cart_add_quantity' item.product.id cart.id item.category %}">
+					{% csrf_token %}
+					<input type="number" name="quantity" value="{{ item.quanity }}" class="form-control text-center"
+					onchange="this.form.submit()">
+				</form>
+
+			</td>
+			<td data-th="Subtotal" class="text-center">{{item.totalprice}} $</td>
+			<td class="actions" data-th="">
+				<a href="{% url 'cart:cart_remove' item.product.id cart.id item.category %}" class="btn btn-danger btn-sm">
+					<i class="fa fa-trash-o"></i>
+				</a>
+			</td>
+		</tr>
+{#		{% endwith %}#}
+		{% endfor %}
+	</tbody>
+
+	<tfoot>
+		<tr class="visible-xs">
+			<td class="text-center"><strong>Giỏ hàng</strong></td>
+		</tr>
+		<tr>
+			<td><a href="{% url 'products:render_product' %}" class="btn btn-warning"><i class="fa fa-angle-left"></i> Tiếp tục mua sắm</a></td>
+			<td colspan="2" class="hidden-xs"></td>
+			{% if cart.total_price != 0 %}
+			<td class="hidden-xs text-center"><strong>Tổng tiền {{cart.total_price}} $</strong></td>
+			<td><a href="{% url 'order:create_order' %}" class="btn btn-success btn-block">Thanh toán <i class="fa fa-angle-right"></i></a></td>
+			{% endif %}
+		</tr>
+
+	</tfoot>
+</table>
+
+&nbsp
+{% endblock %}

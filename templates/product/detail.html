@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+{{ product.name }}
+{% endblock %}
+
+{% block content %}
+<div class="row">
+  <div class="col-lg-8">
+    <div class="card mt-4">
+      <div class="card-body">
+        <img src='{% if product.image %}{{ product.image.url }}{% else %}{% static "img/no_image.png" %}{% endif %}' class="card-img-top img-fluid">  
+      </div> <!-- /.card -->
+    </div>
+    &nbsp
+    &nbsp
+  </div>
+  <div class="col-lg-4">
+    <div class="card mt-4">
+      <div class="card-body">
+        <h2 class="my-4">
+            {% if category == 1 %}
+                <a style=" text-decoration: none;" href='{% url "products:render_list" category %}'>Liên quan: Book</a>
+            {% elif category == 2 %}
+                <a style=" text-decoration: none;" href='{% url "products:render_list" category %}'>Liên quan: Laptop</a>
+            {% elif category == 3 %}
+                <a style=" text-decoration: none;" href='{% url "products:render_list" category %}'>Liên quan: Clothes</a>
+            {% elif category == 4 %}
+                <a style=" text-decoration: none;" href='{% url "products:render_list" category %}'>Liên quan: MobilePhone</a>
+            {% endif %}
+        </h2>
+      </div>
+    </div>
+    <div class="card mt-4">
+      <div class="card-body">
+        <h3 class="card-title">{{ product.name }}</h3>
+        <h4>{{ product.price }} đ</h4>
+        <p class="card-text">{{ product.description}}</p>
+        <div class="card-footer text-center">
+          <small class="text-muted form-group " >
+            <a href="{% url 'cart:cart_add' product.id category %}" class="btn btn-primary">Thêm vào giỏ</a>
+            <a href="#" class="btn btn-default">Yêu thích</a>
+          </small>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+&nbsp;
+{% endblock %}
+
+
+
+
