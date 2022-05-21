@@ -43,12 +43,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'order',
-    'shipment',
-    'payment',
-    'cart',
-    'products',
-    'customer',
+    'shop',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -57,6 +52,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'crispy_forms',
 ]
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -89,7 +85,7 @@ TEMPLATES = [
 WSGI_APPLICATION = 'onlineShop.wsgi.application'
 
 
-# AUTH_USER_MODEL = 'accounts.Account'
+# AUTH_USER_MODEL = 'shop.Customer'
 
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
@@ -169,6 +165,6 @@ EMAIL_HOST_USER = env("EMAIL_HOST_USER")
 EMAIL_HOST_PASSWORD = env("EMAIL_HOST_PASSWORD")
 EMAIL_PORT = env("EMAIL_PORT")
 
-LOGIN_REDIRECT_URL = 'products:render_product'
+LOGIN_REDIRECT_URL = 'render_product'
 CRISPY_TEMPLATE_PACK = 'bootstrap3'
-LOGOUT_REDIRECT_URL = 'products:render_product'
+LOGOUT_REDIRECT_URL = 'render_product'

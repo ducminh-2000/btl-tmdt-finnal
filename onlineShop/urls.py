@@ -17,13 +17,32 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
+from shop.controller import CartDAO, CustomerDAO, OrderDAO, ProductDAO
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include(('products.urls', 'products'), namespace="products")),
-    path('customer/', include(('customer.urls', 'customer'), namespace="customer")),
-    path('cart/', include(('cart.urls', 'cart'), namespace="cart")),
-    path('order/', include(('order.urls', 'order'), namespace="order")),
+
+    # ---- CART ----
+    path('cart_add/<id>/<category>', CartDAO.cart_add, name='cart_add'),
+    path('cart_remove/<productid>/<cartid>/<category>', CartDAO.cart_remove, name='cart_remove'),
+    path('cart_add_quantity/<productid>/<cartid>/<category>', CartDAO.cart_add_quantity, name='cart_add_quantity'),
+    path('cart_detail/', CartDAO.cart_detail, name='cart_detail'),
+
+    # ---- CUSTOMER ----
+    path('', include('django.contrib.auth.urls')),
+    path('signup/', CustomerDAO.signup, name='signup'),
+
+    # ----- ORDER ------
+    path('create_order/', OrderDAO.create_order, name='create_order'),
+    path('create_save/', OrderDAO.order_save, name='order_save'),
+    path('order_list/', OrderDAO.order_list, name='order_list'),
+    path('order_detail/<id>/', OrderDAO.order_detail, name='order_detail'),
+    path('order_remove/<id>/', OrderDAO.order_remove, name='order_remove'),
+
+    # ------ PRODUCT ------
+    path('', ProductDAO.render_product, name='render_product'),
+    path('product/<id>/<category>/', ProductDAO.render_detail, name='render_detail'),
+    path('product/<category>/', ProductDAO.render_list, name='render_list'),
 ]
 
 if settings.DEBUG:

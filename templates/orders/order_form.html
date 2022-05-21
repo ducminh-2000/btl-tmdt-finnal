@@ -9,7 +9,7 @@
   <div class="col-md-8">
     <h4 class="mb-3">Thông tin người mua</h4>
 
-    <form name = "form" action = "{% url 'order:order_save' %}" method = "POST" class="needs-validation">
+    <form name = "form" action = "{% url 'order_save' %}" method = "POST" class="needs-validation">
       {% csrf_token %}
       <div class="mb-3">
         <label for="fullName">Họ tên*</label>

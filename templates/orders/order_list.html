@@ -69,11 +69,11 @@ Trạng thái đơn hàng
     {% endwith %}
 
     <td>
-      <a class="btn btn-primary" href="{% url 'order:order_detail' order.id %}">Chi tiết</a>
+      <a class="btn btn-primary" href="{% url 'order_detail' order.id %}">Chi tiết</a>
     </td>
     {% if order.state == '0' %}
     <td>
-      <a class="btn btn-danger" href="{% url 'order:order_remove' order.id %}"
+      <a class="btn btn-danger" href="{% url 'order_remove' order.id %}"
       onclick="return confirm('Bạn có chắc muốn huỷ đơn hàng?');"> Huỷ đơn
       </a>
     </td>

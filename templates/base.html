@@ -57,7 +57,7 @@
                 </a>
               </li>
               <li>
-                <a href="{% url 'cart:cart_detail' %}">
+                <a href="{% url 'cart_detail' %}">
                   <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> Giỏ hàng
                 </a>
               </li>
@@ -67,7 +67,7 @@
                 </a>
               </li>
               <li>
-                <a href="{% url 'order:order_list' %}">
+                <a href="{% url 'order_list' %}">
                   <span class="glyphicon glyphicon-bookmark" aria-hidden="true"></span> Theo dõi đơn hàng
                 </a>
               </li>
@@ -75,7 +75,7 @@
               <li role="separator" class="divider"></li>
 
               <li>
-                <a href="{% url 'customer:logout' %}">
+                <a href="{% url 'logout' %}">
                   <span class="glyphicon glyphicon-log-out" aria-hidden="true"></span> Đăng xuất
                 </a>
               </li>
@@ -84,13 +84,13 @@
 
           {% else %}
           <li class="nav-item">
-            <a href='{% url "customer:signup" %}' class="nav-link">
+            <a href='{% url "signup" %}' class="nav-link">
               <span aria-hidden="true"></span>&nbsp; Đăng kí
             </a>
           </li>
 
           <li class="nav-item">
-            <a  href="{% url 'customer:login' %}" class="nav-link">
+            <a  href="{% url 'login' %}" class="nav-link">
               <span class="glyphicon glyphicon-log-in" aria-hidden="true"></span>&nbsp; Đăng nhập
             </a>
           </li>

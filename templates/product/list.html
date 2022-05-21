@@ -16,10 +16,10 @@ Trang chủ
       <a href="#" class="list-group-item">Tất cả</a>
 
 
-      <a href='{% url "products:render_list" 1 %}' class="list-group-item">Book</a>
-        <a href='{% url "products:render_list" 2 %}' class="list-group-item">Laptop</a>
-        <a href='{% url "products:render_list" 3 %}' class="list-group-item">Clothes</a>
-        <a href='{% url "products:render_list" 4 %}' class="list-group-item">Mobilephone</a>
+      <a href='{% url "render_list" 1 %}' class="list-group-item">Book</a>
+        <a href='{% url "render_list" 2 %}' class="list-group-item">Laptop</a>
+        <a href='{% url "render_list" 3 %}' class="list-group-item">Clothes</a>
+        <a href='{% url "render_list" 4 %}' class="list-group-item">Mobilephone</a>
 
     </div>
 
@@ -56,20 +56,20 @@ Trang chủ
 
         <div class="card h-100">
           <div class="thumbnail">
-            <a href='{% url "products:render_detail" product.id category%}'>{{product.name}}>
+            <a href='{% url "render_detail" product.id category%}'>{{product.name}}
               <img class="card-img-top" src='{% if product.image %}{{ product.image.url }}{% else %}{% static "img/no_image.png" %}{% endif %}'>
             </a>
           </div>
           <div class="card-body">
             <h4 class="card-title">
-              <a href='{% url "products:render_detail" product.id category%}'>{{product.name}}</a>
+              <a href='{% url "render_detail" product.id category%}'>{{product.name}}</a>
             </h4>
             <h5>{{ product.price }}$</h5>
             <h5 style="line-height: 1.5em;height: 6em;overflow: hidden;">{{ product.description }}</h5>
           </div>
           <div class="card-footer text-center">
             <small class="text-muted">
-              <a  href="{% url 'cart:cart_add' product.id category %}" class="btn btn-primary">Thêm vào giỏ</a>
+              <a  href="{% url 'cart_add' product.id category %}" class="btn btn-primary">Thêm vào giỏ</a>
               <a href="#" class="btn btn-default">Yêu thích</a>
             </small>
           </div>
